@@ -25,6 +25,7 @@
       <div class="martin-message">
         <h1 id="title"></h1>
         <div id="text"></div>
+        <button id="stop">Pipe down!</button>
       </div>
     </div>
   </div>
@@ -54,6 +55,8 @@
     }
 
     synth.speak(utterance)
+
+    return utterance
   }
 
   function getWikipediaData (callback) {
@@ -71,9 +74,8 @@
         })
   }
 
-  function toggleOpenClose ()
-  {
-    return open = !open
+  function toggleOpenClose () {
+    open = !open
   }
 
   function martin () {
@@ -94,6 +96,18 @@
       })
     })
   }
+
+  document.getElementById('stop').addEventListener('click', function (e) {
+    var classList = document.getElementById('martin-jaw').classList;
+    classList.toggle('talk')
+
+    synth.pause()
+
+    setTimeout(function () {
+      classList.toggle('talk')
+      synth.resume()
+    }, 2000)
+  })
 
   window.onload = martin
 </script>
