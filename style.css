@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: 'Roboto Slab', serif;
+  background-color: #F5E2C8;
+  color: #27233A;
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.martin-message {
+  max-width: 600px;
+}
+
+.martin-message h1 {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 1080px) {
+  .martin-message {
+    padding: 30px;
+  }
+}
+
+@keyframes bobbing {
+  from {
+    transform: rotateZ(-4deg);
+  }
+  to {
+    transform: rotateZ(4deg);
+  }
+}
+
+#martin-face, #martin-jaw {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#martin-face {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background-image: url('img/martin-face.png');
+  animation-name: bobbing;
+  animation-duration: 0.4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes talking {
+  0% {
+    transform: translateY(0%);
+  }
+  20% {
+    transform: translateY(20%);
+  }
+  30% {
+    transform: translateY(0%);
+  }
+  60% {
+    transform: translateY(30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+#martin-jaw {
+  position: absolute;
+  bottom: 0;
+  left: 38%;
+  width: 24%;
+  height: 24%;
+  margin: 0 auto;
+  background-image: url('img/martin-jaw.png');
+}
+
+#martin-jaw.talk {
+  animation-name: talking;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

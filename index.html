@@ -9,10 +9,25 @@
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-  <h1 id="title"></h1>
-  <div id="text"></div>
+  <div class="page row middle-md">
+    <div class="col-xs-12 col-md-6">
+      <div id="martin-face">
+        <div id="martin-jaw" class="talk"></div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="martin-message">
+        <h1 id="title"></h1>
+        <div id="text"></div>
+      </div>
+    </div>
+  </div>
 </body>
 <script>
   var synth = window.speechSynthesis
