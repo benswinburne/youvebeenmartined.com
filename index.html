@@ -16,6 +16,7 @@
 </body>
 <script>
   var synth = window.speechSynthesis
+  var open = false
 
   synth.cancel()
 
@@ -55,12 +56,21 @@
         })
   }
 
+  function toggleOpenClose ()
+  {
+    return open = !open
+  }
+
   function martin () {
     getWikipediaData(function (title, text) {
       document.getElementById('title').innerHTML = title
       document.getElementById('text').innerHTML = text
 
       speak(text, function (utterance) {
+        utterance.onboundary = function (e) {
+          toggleOpenClose()
+        }
+
         utterance.onend = function (e) {
           speak('That was interesting?', function (utterance) {
             martin()
