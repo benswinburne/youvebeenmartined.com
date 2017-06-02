@@ -19,27 +19,57 @@
 
   synth.cancel()
 
-  var url = 'https://en.wikipedia.org/w/api.php'
-          + '?origin=*&format=json&action=query&exlimit=max'
-          + '&generator=random&grnnamespace=0&exintro=&explaintext='
-          + '&prop=extracts|revisions|images&rvprop=content&grnlimit=1'
+  function setVoice (utterance, voice = 'Daniel') {
+    utterance.voice = synth.getVoices()
+    .filter(function (v) {
+      return v.name === voice
+    })[0]
 
-  fetch(url)
-    .then(function (response) {
-      return response.json()
+    return utterance
+  }
+
+  function speak (message, callback) {
+    var utterance = new SpeechSynthesisUtterance(message)
+
+    setVoice(utterance, 'Daniel')
+
+    if (typeof callback === 'function') {
+      callback(utterance)
+    }
+
+    synth.speak(utterance)
+  }
+
+  function getWikipediaData (callback) {
+    var url = 'https://en.wikipedia.org/w/api.php'
+      + '?origin=*&format=json&action=query&exlimit=max'
+      + '&generator=random&grnnamespace=0&exintro=&explaintext='
+      + '&prop=extracts|revisions|images&rvprop=content&grnlimit=1'
+
+      fetch(url)
+        .then(function (response) { return response.json() })
+        .then(function (data) {
+          var pages = data.query.pages;
+          var page = pages[Object.keys(pages)[0]];
+          callback(page.title, page.extract)
+        })
+  }
+
+  function martin () {
+    getWikipediaData(function (title, text) {
+      document.getElementById('title').innerHTML = title
+      document.getElementById('text').innerHTML = text
+
+      speak(text, function (utterance) {
+        utterance.onend = function (e) {
+          speak('That was interesting?', function (utterance) {
+            martin()
+          })
+        }
+      })
     })
-    .then(function (data) {
-      var pages = data.query.pages;
-      var page = pages[Object.keys(pages)[0]];
-      var title = page.title
-      var text = page.extract
+  }
 
-      document.getElementById('title').innerHTML = title;
-      document.getElementById('text').innerHTML = text;
-
-      var utterThis = new SpeechSynthesisUtterance(text)
-      utterThis.voice = synth.getVoices()[0];
-      synth.speak(utterThis)
-    })
+  window.onload = martin
 </script>
 </html>
