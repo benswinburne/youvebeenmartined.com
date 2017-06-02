@@ -74,31 +74,23 @@
         })
   }
 
-  function toggleOpenClose () {
-    open = !open
-  }
-
   function martin () {
     getWikipediaData(function (title, text) {
       document.getElementById('title').innerHTML = title
       document.getElementById('text').innerHTML = text
 
       speak(text, function (utterance) {
-        utterance.onboundary = function (e) {
-          toggleOpenClose()
-        }
-
-        utterance.onend = function (e) {
+        utterance.addEventListener('end', function (e) {
           speak('That was interesting?', function (utterance) {
             martin()
           })
-        }
+        })
       })
     })
   }
 
   document.getElementById('stop').addEventListener('click', function (e) {
-    var classList = document.getElementById('martin-jaw').classList;
+    var classList = document.getElementById('martin-jaw').classList
     classList.toggle('talk')
 
     synth.pause()
