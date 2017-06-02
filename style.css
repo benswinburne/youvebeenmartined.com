@@ -78,6 +78,9 @@ body {
   height: 24%;
   margin: 0 auto;
   background-image: url('img/martin-jaw.png');
+}
+
+#martin-jaw.talk {
   animation-name: talking;
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
