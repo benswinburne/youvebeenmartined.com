@@ -46,6 +46,9 @@ body {
   height: 400px;
   margin: 0 auto;
   background-image: url('img/martin-face.png');
+}
+
+#martin-face.talk {
   animation-name: bobbing;
   animation-duration: 0.4s;
   animation-iteration-count: infinite;
@@ -80,9 +83,24 @@ body {
   background-image: url('img/martin-jaw.png');
 }
 
-#martin-jaw.talk {
+#martin-face.talk #martin-jaw {
   animation-name: talking;
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+button {
+  padding: 10px 14px;
+  background-color: #27233A;
+  color: #F5E2C8;
+  font-size: 16px;
+  border: 0;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+button#stop {
+  margin-top: 20px;
 }

@@ -17,8 +17,8 @@
 <body>
   <div class="page row middle-md">
     <div class="col-xs-12 col-md-6">
-      <div id="martin-face">
-        <div id="martin-jaw" class="talk"></div>
+      <div id="martin-face" class="talk">
+        <div id="martin-jaw"></div>
       </div>
     </div>
     <div class="col-xs-12 col-md-6">
@@ -90,7 +90,7 @@
   }
 
   document.getElementById('stop').addEventListener('click', function (e) {
-    var classList = document.getElementById('martin-jaw').classList
+    var classList = document.getElementById('martin-face').classList;
     classList.toggle('talk')
 
     synth.pause()
