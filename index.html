@@ -76,7 +76,7 @@
   }
 
   function martin () {
-    if (!useBullshit) {
+    if (!(window.location.hash === '#requirements')) {
       getWikipediaData(function (title, text) {
         document.getElementById('title').innerHTML = title
         document.getElementById('text').innerHTML = text
