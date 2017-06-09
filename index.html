@@ -33,6 +33,7 @@
 <script>
   var synth = window.speechSynthesis
   var open = false
+  const useBullshit = true
 
   synth.cancel()
 
@@ -75,18 +76,32 @@
   }
 
   function martin () {
-    getWikipediaData(function (title, text) {
-      document.getElementById('title').innerHTML = title
-      document.getElementById('text').innerHTML = text
+    if (!useBullshit) {
+      getWikipediaData(function (title, text) {
+        document.getElementById('title').innerHTML = title
+        document.getElementById('text').innerHTML = text
 
-      speak(text, function (utterance) {
+        speak(text, function (utterance) {
+          utterance.addEventListener('end', function (e) {
+            speak('That was interesting?', function (utterance) {
+              martin()
+            })
+          })
+        })
+      })
+    } else {
+      const bullshit = 'Widgets feeds, deploy facilitate, "best-of-breed architectures web-readiness unleash, intuitive post value, strategize reintermediate incentivize, enterprise peer-to-peer." Ubiquitous eyeballs user-centric cross-platform, paradigms best-of-breed cutting-edge. Efficient networking, methodologies Cluetrain, enable viral, magnetic streamline ubiquitous efficient: transition e-markets interfaces, tag? Compelling social strategize facilitate data-driven, next-generation, B2C webservices; post maximize seamless interactive. Models reinvent: expedite networking innovate next-generation, blogging enable, B2B platforms. Clicks-and-mortar, ROI, user-contributed tag embrace maximize? Killer portals, platforms supply-chains: communities productize incentivize next-generation e-markets facilitate interactive impactful transition, semantic. Reinvent, blogging paradigms, podcasting embedded syndicate clicks-and-mortar disintermediate content content revolutionary. Rss-capable B2B; extensible portals customized user-centric; generate benchmark robust engage! Convergence markets infrastructures benchmark transition; systems leading-edge infrastructures value; bricks-and-clicks mission-critical podcasting weblogs clicks-and-mortar. Vortals enable e-markets user-centric, enterprise; redefine, webservices transform real-time distributed ecologies, enable citizen-media deploy post cross-platform! Citizen-media front-end platforms seamless; holistic revolutionize revolutionize. Share A-list orchestrate facilitate whiteboard e-enable; enhance; architectures; integrate, Cluetrain optimize bleeding-edge; scale e-business whiteboard out-of-the-box syndicate e-business. Frictionless; content open-source integrated frictionless, beta-test transition, vortals, web-readiness supply-chains incubate blogging? Blogospheres blogospheres aggregate exploit brand benchmark integrate expedite communities rich-clientAPIs feeds vortals scale. Iterate exploit robust communities social engineer mashups robust? Transparent e-business A-list utilize, deliverables channels podcasts collaborative relationships peer-to-peer synergize e-tailers eyeballs cross-platform. Functionalities infomediaries out-of-the-box--web-readiness revolutionize enterprise interfaces, life-hacks architectures disintermediate deploy, disintermediate efficient rich-clientAPIs. Facilitate bricks-and-clicks holistic e-commerce interfaces streamline Cluetrain synergize remix, "tag visionary, sexy." Partnerships capture facilitate bricks-and-clicks, envisioneer supply-chains ecologies value-added next-generation innovate podcasting enhance, enhance. Open-source authentic, facilitate scalable reinvent benchmark bandwidth. Strategic innovative optimize; integrate experiences benchmark enterprise intuitive reinvent. Standards-compliant social turn-key metrics widgets syndicate, technologies ROI technologies transition, "integrate dynamic incubate, repurpose communities architectures drive brand; disintermediate." Synergize, "deploy e-commerce supply-chains magnetic," capture data-driven drive disintermediate seize out-of-the-box e-commerce, grow; cutting-edge generate capture, compelling. User-contributed, sticky--benchmark infrastructures, technologies leverage sticky data-driven dot-com intuitive killer front-end mission-critical out-of-the-box. E-markets proactive e-enable. Cross-media podcasting syndicate orchestrate rich-clientAPIs communities granular end-to-end productize sexy platforms 24/7; transform tagclouds productize technologies; benchmark. Syndicate real-time maximize best-of-breed compelling? Sexy ROI supply-chains dynamic innovate morph real-time, "content," scale disintermediate real-time. Architect: mashups frictionless convergence; customized, systems integrate tag intuitive: deploy empower intuitive scale, enable leading-edge, architect. Target bandwidth bricks-and-clicks wireless empower tagclouds 24/365 viral incubate next-generation. Extensible synergies infrastructures leverage monetize initiatives expedite viral syndicate interactive. Unleash weblogs strategize mindshare architect, whiteboard, engineer seize--e-enable seamless: streamline; B2B embrace, user-centric, reinvent facilitate ubiquitous exploit, aggregate. Infrastructures user-centric extensible distributed matrix transparent strategic, "integrate," content brand aggregate, wikis 24/365 weblogs? Repurpose communities wikis revolutionary synergies reinvent transparent robust intuitive, disintermediate user-centric communities e-business e-services. Next-generation, "partnerships e-tailers engineer reinvent webservices integrated." Distributed? Robust social implement empower viral implement drive orchestrate extend target facilitate envisioneer relationships expedite, 24/365! Repurpose world-class niches value engage e-business architectures networks! Deliver transform B2B extend one-to-one transition sticky create solutions global, rss-capable design B2C addelivery. Syndicate proactive expedite drive wireless monetize technologies functionalities magnetic communities orchestrate; facilitate standards-compliant synthesize portals. Real-time user-contributed solutions ROI productize. Syndicate integrate magnetic best-of-breed user-centred leverage, models disintermediate viral life-hacks create schemas innovative Cluetrain: aggregate folksonomies aggregate. Seamless architectures mission-critical interactive technologies vertical bricks-and-clicks podcasts seize beta-test embedded communities proactive drive; systems; convergence revolutionary benchmark sexy e-markets paradigms utilize. Ubiquitous eyeballs cultivate, streamline benchmark peer-to-peer podcasts mashups, podcasting out-of-the-box ubiquitous clicks-and-mortar, citizen-media transform reinvent. Leverage revolutionize deploy standards-compliant: engineer networkeffects e-business, "grow paradigms feeds bandwidth portals killer." Orchestrate extensible networks paradigms wikis portals standards-compliant addelivery applications dynamic life-hacks next-generation, clicks-and-mortar plug-and-play, technologies matrix. Platforms; action-items back-end social content recontextualize networking virtual, "vertical enable scale, proactive functionalities user-centred embedded."';
+
+      document.getElementById('title').innerHTML = "New requirements."
+
+      speak(bullshit, function (utterance) {
         utterance.addEventListener('end', function (e) {
           speak('That was interesting?', function (utterance) {
             martin()
           })
         })
       })
-    })
+    }
   }
 
   document.getElementById('stop').addEventListener('click', function (e) {
